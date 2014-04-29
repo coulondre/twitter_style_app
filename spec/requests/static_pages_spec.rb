@@ -8,9 +8,20 @@ describe "Static pages" do
       visit '/static_pages/home'
       expect(page).to have_content('Twitter Style App')
     end
+
+    it "should have the base title" do
+      visit '/static_pages/home'
+      expect(page).to have_title("")
+    end
+
     it "should have a title 'Home' " do
       visit '/static_pages/home'
-      expect(page).to have_title('Twitter Style App | Home')
+      expect(page).to have_title('Twitter Style App')
+    end
+
+    it "should not have a custum page title" do
+      visit '/static_pages/home'
+      expect(page).not_to have_title('|home')
     end
   end
 
