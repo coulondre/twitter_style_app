@@ -68,8 +68,18 @@ describe User do
   describe "when email address is already taken" do
     before do
       user_with_same_email = @user.dup
+      user_with_same_email.name = "test"
       user_with_same_email.email = @user.email.upcase
       user_with_same_email.save
+    end
+    it { should_not be_valid }
+  end
+
+  describe "when name is already taken" do
+    before do
+      user_with_same_name = @user.dup
+      user_with_same_name.email = "test@test.org" 
+      user_with_same_name.save
     end
     it { should_not be_valid }
   end
